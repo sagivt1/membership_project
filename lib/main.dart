@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:membership_project/Pages/wrapper.dart';
 
 void main() {
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      //'/': (context) => //Loading(),
-      //'/home' : (context) => Home(),
-      //Add more pages
-    },
-  ));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Wrapper(),
+    );
+  }
 }
