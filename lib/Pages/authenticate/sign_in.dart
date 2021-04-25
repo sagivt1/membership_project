@@ -28,7 +28,7 @@ class _SignInState extends State<SignIn> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blue[400],
       appBar: AppBar(
-        title: Text('התחברות'),
+        title: Text('Sign In'),
         backgroundColor: Colors.blue[800],
         elevation: 0.0,
         actions: <Widget> [
@@ -37,7 +37,7 @@ class _SignInState extends State<SignIn> {
               widget.toggleView();
             },
             icon: Icon(Icons.person),
-            label: Text('הרשמה'),
+            label: Text('Sign Up'),
           )
         ],
       ),
@@ -50,23 +50,23 @@ class _SignInState extends State<SignIn> {
               children: <Widget> [
                 SizedBox(height: 20.0,),
                 Text(
-                  'אימיל',
+                  'Email',
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 TextFormField(
-                  validator: (val) => val.isEmpty ? 'אנא הכניסו כתובת אימייל' : null,
+                  validator: (val) => val.isEmpty ? 'Please Enter email address' : null,
                   onChanged: (val) {
                     setState(() => email = val);
                   },
                 ),
                 SizedBox(height: 20.0,),
                 Text(
-                  'סיסמה',
+                  'Password',
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 TextFormField(
                   obscureText: true,
-                  validator: (val) => val.length < 8 ? 'אנא הכניסו סיסמה בעל אורך הגדול מ 8' : null,
+                  validator: (val) => val.length < 8 ? 'Password should contains at least 8 digit' : null,
                   onChanged: (val) {
                     setState(() => password = val);
                   },
@@ -75,14 +75,14 @@ class _SignInState extends State<SignIn> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.blue),
                   child: Text(
-                    'התחבר',
+                    'Sign In',
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
                     if(_formKey.currentState.validate()){
                       dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                       if(result == null){
-                        setState(() => error = 'המידע שהוכנס שגוי');
+                        setState(() => error = 'Invalid data');
                       }
                     }
                   },
