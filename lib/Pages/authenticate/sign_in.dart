@@ -25,7 +25,38 @@ class _SignInState extends State<SignIn> {
         //elevation: 0.0,
       ),
       body: Container(
-
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+        child: Form(
+          child: Column(
+            children: <Widget> [
+              SizedBox(height: 20.0,),
+              TextFormField(
+                onChanged: (val) {
+                  setState(() => email = val);
+                },
+              ),
+              SizedBox(height: 20.0,),
+              TextFormField(
+                obscureText: true,
+                onChanged: (val) {
+                  setState(() => password = val);
+                },
+              ),
+              SizedBox(height: 20.0,),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.blue),
+                child: Text(
+                  'התחבר',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () async {
+                  print(email);
+                  print(password);
+                },
+              )
+            ],
+          ),
+        ),
       )
     );
   }
