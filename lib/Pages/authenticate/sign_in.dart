@@ -78,7 +78,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 onPressed: () async {
                   if(_formKey.currentState.validate()){
-                    dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                    dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                     if(result == null){
                       setState(() => error = 'המידע שהוכנס שגוי');
                     }
