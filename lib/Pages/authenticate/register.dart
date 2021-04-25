@@ -25,6 +25,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blue[400],
       appBar: AppBar(
         title: Text('הרשמה'),
@@ -40,56 +41,58 @@ class _RegisterState extends State<Register> {
           )
         ],
       ),
-      body:Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget> [
-              SizedBox(height: 20.0,),
-              Text(
-                'אימיל',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              TextFormField(
-                validator: (val) => val.isEmpty ? 'אנא הכניסו כתובת אימייל' : null,
-                onChanged: (val) {
-                  setState(() => email = val);
-                },
-              ),
-              SizedBox(height: 20.0,),
-              Text(
-                'סיסמה',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              TextFormField(
-                obscureText: true,
-                validator: (val) => val.length < 8 ? 'אנא הכניסו סיסמה בעל אורך הגדול מ 8' : null,
-                onChanged: (val) {
-                  setState(() => password = val);
-                },
-              ),
-              SizedBox(height: 20.0,),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.blue),
-                child: Text(
-                  'הירשם',
-                  style: TextStyle(color: Colors.white),
+      body:SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget> [
+                SizedBox(height: 20.0,),
+                Text(
+                  'אימיל',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
-                onPressed: () async {
-                  if(_formKey.currentState.validate()){
-                    dynamic result = await _auth.registerWithEmailAndPassword(email, password);
-                    if(result == null){
-                      setState(() => error = 'המידע שהוכנס שגוי');
+                TextFormField(
+                  validator: (val) => val.isEmpty ? 'אנא הכניסו כתובת אימייל' : null,
+                  onChanged: (val) {
+                    setState(() => email = val);
+                  },
+                ),
+                SizedBox(height: 20.0,),
+                Text(
+                  'סיסמה',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+                TextFormField(
+                  obscureText: true,
+                  validator: (val) => val.length < 8 ? 'אנא הכניסו סיסמה בעל אורך הגדול מ 8' : null,
+                  onChanged: (val) {
+                    setState(() => password = val);
+                  },
+                ),
+                SizedBox(height: 20.0,),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.blue),
+                  child: Text(
+                    'הירשם',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    if(_formKey.currentState.validate()){
+                      dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                      if(result == null){
+                        setState(() => error = 'המידע שהוכנס שגוי');
+                      }
                     }
-                  }
-                },
-              ),
-              Text(
-                error,
-                style: TextStyle(color: Colors.red, fontSize: 14.0),
-              ),
-            ],
+                  },
+                ),
+                Text(
+                  error,
+                  style: TextStyle(color: Colors.red, fontSize: 14.0),
+                ),
+              ],
+            ),
           ),
         ),
       )
