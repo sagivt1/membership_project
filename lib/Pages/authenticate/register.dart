@@ -3,6 +3,11 @@ import 'package:membership_project/Services/auth.dart';
 
 
 class Register extends StatefulWidget {
+
+  final Function toggleView;
+
+  Register({ this.toggleView });
+
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -22,7 +27,16 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         title: Text('הרשמה'),
         backgroundColor: Colors.blue[800],
-        //elevation: 0.0,
+        elevation: 0.0,
+        actions: <Widget> [
+          TextButton.icon(
+              onPressed: () {
+                widget.toggleView();
+              },
+              icon: Icon(Icons.person),
+              label: Text('התחבר'),
+          )
+        ],
       ),
       body:Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),

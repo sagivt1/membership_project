@@ -3,6 +3,11 @@ import 'package:membership_project/Services/auth.dart';
 
 
 class SignIn extends StatefulWidget {
+
+  final Function toggleView;
+
+  SignIn({ this.toggleView });
+
   @override
   _SignInState createState() => _SignInState();
 }
@@ -22,7 +27,16 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         title: Text('התחברות'),
         backgroundColor: Colors.blue[800],
-        //elevation: 0.0,
+        elevation: 0.0,
+        actions: <Widget> [
+          TextButton.icon(
+            onPressed: () {
+              widget.toggleView();
+            },
+            icon: Icon(Icons.person),
+            label: Text('הרשמה'),
+          )
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
