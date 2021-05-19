@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:membership_project/Services/auth.dart';
 
-
 class Home extends StatelessWidget {
-
   final AuthService _auth = AuthService();
 
   @override
@@ -14,10 +12,16 @@ class Home extends StatelessWidget {
         title: Text('Membership club'),
         backgroundColor: Colors.blue[800],
         elevation: 0.0,
-        actions: <Widget> [
+        actions: <Widget>[
           TextButton.icon(
-            icon: Icon(Icons.logout,color: Colors.black,),
-            label: Text('Logout',style: TextStyle(color: Colors.black),),
+            icon: Icon(
+              Icons.logout,
+              color: Colors.black,
+            ),
+            label: Text(
+              'Logout',
+              style: TextStyle(color: Colors.black),
+            ),
             onPressed: () async {
               await _auth.logOut();
             },
