@@ -7,6 +7,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+ edit_information_page
         backgroundColor: Colors.blue[400],
         appBar: AppBar(
           title: Text('Membership club'),

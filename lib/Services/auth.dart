@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:membership_project/models/member.dart';
 
-class AuthService{
-
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   /// Get user from the database and return as Member object
-  Member _userFromFirebaseUser(User user){
-    return user != null ? Member(userId : user.uid) : null;
+  Member _userFromFirebaseUser(User user) {
+    return user != null ? Member(userId: user.uid) : null;
   }
 
   /// auth change user stream
@@ -17,11 +16,11 @@ class AuthService{
 
   ///Anonymous Sign In
   Future signInAnon() async {
-    try{
+    try {
       UserCredential result = await _auth.signInAnonymously();
       User user = result.user;
       return _userFromFirebaseUser(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
@@ -29,35 +28,35 @@ class AuthService{
 
   ///Sign out
   Future logOut() async {
-    try{
+    try {
       return await _auth.signOut();
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-  Future registerWithEmailAndPassword(String email,String password) async {
-    try{
-      UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       User user = result.user;
       return _userFromFirebaseUser(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-  Future signInWithEmailAndPassword(String email,String password) async {
-    try{
-      UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       User user = result.user;
       return _userFromFirebaseUser(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
-
-
 }
