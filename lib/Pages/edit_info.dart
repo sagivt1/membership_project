@@ -26,15 +26,16 @@ class _EditProfilePage extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }, //go back to home page
         ),
-        onPressed: () {
-          Navigator.pop(context);
-        }, //go back to home page
-      )),
+      ),
       body: Container(
         padding: EdgeInsets.only(left: 8, top: 8),
         child: GestureDetector(

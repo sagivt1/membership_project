@@ -45,16 +45,6 @@ class Home extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Edit Information'),
-              leading: Icon(Icons.account_circle_outlined),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Edit()),
-                );
-              },
-            ),
-            ListTile(
               title: Text('Use My Points'),
               leading: Icon(Icons.add_shopping_cart_outlined),
               onTap: () {
@@ -67,7 +57,7 @@ class Home extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Personal Information'),
+              title: Text('Profile'),
               leading: Icon(Icons.people),
               onTap: () {
                 Navigator.of(context).push(
@@ -75,6 +65,16 @@ class Home extends StatelessWidget {
                       builder: (context) =>
                           Edit() //change to the page when we will create it
                       ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Edit Information'),
+              leading: Icon(Icons.account_circle_outlined),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Edit()),
                 );
               },
             ),
@@ -93,6 +93,9 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
+      body: Container(
+        
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         fixedColor: Colors.blueGrey,
@@ -105,10 +108,10 @@ class Home extends StatelessWidget {
             title: Text("Search"),
             icon: Icon(Icons.search),
           ),
-          BottomNavigationBarItem(
-            title: Text("Profile"),
-            icon: Icon(Icons.account_circle),
-          ),
+          //BottomNavigationBarItem(
+          //  title: Text("Profile"),
+          //  icon: Icon(Icons.account_circle),
+          //),
           //Action()
         ],
       ),
