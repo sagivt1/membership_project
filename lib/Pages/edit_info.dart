@@ -31,7 +31,9 @@ class _EditProfilePage extends State<EditProfilePage> {
           Icons.arrow_back,
           color: Colors.black,
         ),
-        onPressed: () {}, //go back to home page
+        onPressed: () {
+          Navigator.pop(context);
+        }, //go back to home page
       )),
       body: Container(
         padding: EdgeInsets.only(left: 8, top: 8),

@@ -47,22 +47,48 @@ class Home extends StatelessWidget {
             ListTile(
               title: Text('Edit Information'),
               leading: Icon(Icons.account_circle_outlined),
-              onTap: (){
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Edit()));
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Edit()),
+                );
               },
             ),
             ListTile(
               title: Text('Use My Points'),
               leading: Icon(Icons.add_shopping_cart_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Edit() //change to the page when we will create it
+                      ),
+                );
+              },
             ),
             ListTile(
               title: Text('Personal Information'),
               leading: Icon(Icons.people),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Edit() //change to the page when we will create it
+                      ),
+                );
+              },
             ),
             ListTile(
               title: Text('Contact Us'),
               leading: Icon(Icons.email),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Edit() //change to the page when we will create it
+                      ),
+                );
+              },
             ),
           ],
         ),
