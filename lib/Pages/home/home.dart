@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:membership_project/Services/auth.dart';
+import 'package:membership_project/Pages/edit_info.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -30,7 +31,7 @@ class Home extends StatelessWidget {
       ),
       drawer: Drawer(
         child: ListView(
-          children: const <Widget>[
+          children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blueGrey,
@@ -46,6 +47,10 @@ class Home extends StatelessWidget {
             ListTile(
               title: Text('Edit Information'),
               leading: Icon(Icons.account_circle_outlined),
+              onTap: (){
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Edit()));
+              },
             ),
             ListTile(
               title: Text('Use My Points'),
