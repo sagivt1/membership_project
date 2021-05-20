@@ -29,10 +29,13 @@ class _EditProfilePage extends State<EditProfilePage> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.pop(context);
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Home()));
           }, //go back to home page
         ),
       ),
@@ -69,7 +72,12 @@ class _EditProfilePage extends State<EditProfilePage> {
                         padding: EdgeInsets.symmetric(horizontal: 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        },
                         child: Text(
                           'Cancel',
                           style: TextStyle(

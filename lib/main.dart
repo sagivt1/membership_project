@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:membership_project/Pages/wrapper.dart';
 import 'package:membership_project/Services/auth.dart';
 import 'package:membership_project/models/member.dart';
-import 'package:membership_project/Pages/edit_info.dart';
+import 'package:membership_project/Pages/menu_pages/edit_info.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

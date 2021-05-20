@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:membership_project/Pages/menu_pages/profile.dart';
 import 'package:membership_project/Services/auth.dart';
-import 'package:membership_project/Pages/edit_info.dart';
+import 'package:membership_project/Pages/menu_pages/edit_info.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -60,11 +61,10 @@ class Home extends StatelessWidget {
               title: Text('Profile'),
               leading: Icon(Icons.people),
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          Edit() //change to the page when we will create it
-                      ),
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Profile()),
                 );
               },
             ),
@@ -72,6 +72,7 @@ class Home extends StatelessWidget {
               title: Text('Edit Information'),
               leading: Icon(Icons.account_circle_outlined),
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Edit()),
@@ -93,9 +94,7 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(
-        
-      ),
+      body: Container(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         fixedColor: Colors.blueGrey,
