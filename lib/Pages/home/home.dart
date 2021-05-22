@@ -3,9 +3,26 @@ import 'package:membership_project/Pages/menu_pages/profile.dart';
 import 'package:membership_project/Services/auth.dart';
 import 'package:membership_project/Pages/menu_pages/edit_info.dart';
 
-class Home extends StatelessWidget {
-  final AuthService _auth = AuthService();
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
 
+class _HomeState extends State<Home> {
+  final AuthService _auth = AuthService();
+  int _selectedIndex = 0;
+  void _onItemTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  List<Widget> _widgetOption = <Widget>[
+    //need to fix the Bottom Navigation Bar
+    Edit(),
+    Profile(),
+    EditProfilePage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,23 +113,31 @@ class Home extends StatelessWidget {
       ),
       body: Container(),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        fixedColor: Colors.blueGrey,
+        //fixedColor: Colors.black45,
         items: [
           BottomNavigationBarItem(
-            title: Text("Home"),
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            backgroundColor: Colors.blue,
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            title: Text("Search"),
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.camera_outlined),
+            backgroundColor: Colors.blue,
+            title: Text('Scan QR'),
           ),
-          //BottomNavigationBarItem(
-          //  title: Text("Profile"),
-          //  icon: Icon(Icons.account_circle),
-          //),
-          //Action()
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            backgroundColor: Colors.blue,
+            title: Text('Search'),
+          ),
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTap,
+        //onTap: (index) {
+        //  setState(() {
+        //    _currentIndex = index;
+        //  });
+        //},
       ),
     );
   }
