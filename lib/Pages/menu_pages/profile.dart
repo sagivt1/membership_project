@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -60,13 +60,13 @@ class _ProfilePage extends State<ProfilePage> {
               ),
               imageProfile(),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               buildTextField('Full Name', 'Amit Bracha', false),
               buildTextField('Password', '******', true),
               buildTextField('Email', 'amit@gmail.com', false),
               SizedBox(
-                height: 190,
+                height: 20,
               ),
               Center(
                 child: Row(
@@ -130,9 +130,9 @@ class _ProfilePage extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 35),
+          padding: const EdgeInsets.only(bottom: 35, top: 20),
           child: SizedBox(
-            width: 270,
+            width: 330,
             child: TextField(
               obscureText: isPassword ? showPassword : false,
               decoration: InputDecoration(
@@ -166,26 +166,26 @@ class _ProfilePage extends State<ProfilePage> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          // ignore: deprecated_member_use
-          child: RaisedButton(
-            onPressed: () {},
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            elevation: 5,
-            color: Colors.green,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              'Update',
-              style: TextStyle(
-                fontSize: 15,
-                letterSpacing: 2.5,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ),
+        //Padding(
+        //  padding: const EdgeInsets.only(right: 10),
+        //  // ignore: deprecated_member_use
+        //  child: RaisedButton(
+        //    onPressed: () {},
+        //    padding: EdgeInsets.symmetric(horizontal: 25),
+        //    elevation: 5,
+        //    color: Colors.green,
+        //    shape:
+        //        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        //    child: Text(
+        //      'Update',
+        //      style: TextStyle(
+        //        fontSize: 15,
+        //        letterSpacing: 2.5,
+        //        color: Colors.black,
+        //      ),
+        //    ),
+        //  ),
+        //),
       ],
     );
   }
@@ -265,9 +265,10 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 
-  void takePhoto(ImageSource source) async {
+  void takePhoto(ImageSource pic) async {
+    //maybe change void to Future
     final pickedFile = await _picker.getImage(
-      source: source,
+      source: pic,
     );
     setState(() {
       _imageFile = pickedFile;
