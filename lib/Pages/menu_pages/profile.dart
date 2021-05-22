@@ -1,9 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:membership_project/Pages/authenticate/authenticate.dart';
 import 'package:membership_project/Pages/home/home.dart';
-import 'package:membership_project/models/member.dart';
-import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -50,6 +48,11 @@ class _ProfilePage extends State<ProfilePage> {
                 'Profile',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
+              SizedBox(
+                height: 15,
+              ),
+              imageProfile(context),
+
               SizedBox(
                 height: 50,
               ),
@@ -180,4 +183,69 @@ class _ProfilePage extends State<ProfilePage> {
       ],
     );
   }
+}
+
+Widget imageProfile(context) {
+  return Center(
+    child: Stack(
+      children: <Widget>[
+        CircleAvatar(
+          radius: 80,
+          backgroundImage: AssetImage("assets/DefaultProfilePicture.png"),
+        ),
+      ],
+    ),
+  );
+
+  /**
+  return Center(
+    child: Stack(
+      children: [
+        Container(
+          width: 130,
+          height: 130,
+          decoration: BoxDecoration(
+            border: Border.all(
+                width: 4,
+                color: Theme.of(context).scaffoldBackgroundColor),
+            boxShadow: [
+              BoxShadow(
+                spreadRadius: 2,
+                blurRadius: 10,
+                color: Colors.black.withOpacity(0.2),
+                offset: Offset(0, 10),
+              )
+            ],
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(
+                  "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                width: 4,
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ),
+              color: Colors.blue,
+            ),
+            child: Icon(
+              Icons.edit,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+  **/
 }
