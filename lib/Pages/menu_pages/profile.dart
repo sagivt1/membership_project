@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:membership_project/Pages/home/home.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -19,8 +22,12 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
-  bool showPassword = false;
   @override
+  PickedFile _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  bool showPassword = false;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -51,8 +58,7 @@ class _ProfilePage extends State<ProfilePage> {
               SizedBox(
                 height: 15,
               ),
-              imageProfile(context),
-
+              imageProfile(),
               SizedBox(
                 height: 50,
               ),
@@ -183,69 +189,88 @@ class _ProfilePage extends State<ProfilePage> {
       ],
     );
   }
-}
 
-Widget imageProfile(context) {
-  return Center(
-    child: Stack(
-      children: <Widget>[
-        CircleAvatar(
-          radius: 80,
-          backgroundImage: AssetImage("assets/DefaultProfilePicture.png"),
-        ),
-      ],
-    ),
-  );
-
-  /**
-  return Center(
-    child: Stack(
-      children: [
-        Container(
-          width: 130,
-          height: 130,
-          decoration: BoxDecoration(
-            border: Border.all(
-                width: 4,
-                color: Theme.of(context).scaffoldBackgroundColor),
-            boxShadow: [
-              BoxShadow(
-                spreadRadius: 2,
-                blurRadius: 10,
-                color: Colors.black.withOpacity(0.2),
-                offset: Offset(0, 10),
-              )
-            ],
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(
-                  "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"),
-            ),
+  Widget imageProfile() {
+    return Center(
+      child: Stack(
+        children: <Widget>[
+          CircleAvatar(
+            radius: 70,
+            backgroundImage: _imageFile == null
+                ? AssetImage("assets/DefaultProfilePicture.png")
+                : FileImage(File(_imageFile.path)),
           ),
-        ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                width: 4,
-                color: Theme.of(context).scaffoldBackgroundColor,
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: ((builder) => bottomSheet()),
+                );
+              },
+              child: Icon(
+                Icons.edit_outlined,
+                color: Colors.blue,
+                size: 30,
               ),
-              color: Colors.blue,
-            ),
-            child: Icon(
-              Icons.edit,
-              color: Colors.white,
             ),
           ),
-        ),
-      ],
-    ),
-  );
-  **/
+        ],
+      ),
+    );
+  }
+
+  Widget bottomSheet() {
+    return Container(
+      height: 90,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            "Choose Profile Picture",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton.icon(
+                icon: Icon(Icons.camera_alt),
+                onPressed: () {
+                  takePhoto(ImageSource.camera);
+                },
+                label: Text("Camera"),
+              ),
+              FlatButton.icon(
+                icon: Icon(Icons.image),
+                onPressed: () {
+                  takePhoto(ImageSource.gallery);
+                },
+                label: Text("Gallery"),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void takePhoto(ImageSource source) async {
+    final pickedFile = await _picker.getImage(
+      source: source,
+    );
+    setState(() {
+      _imageFile = pickedFile;
+    });
+  }
 }
