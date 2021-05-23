@@ -5,6 +5,11 @@ import 'package:membership_project/Services/auth.dart';
 import 'package:membership_project/Pages/menu_pages/edit_info.dart';
 import 'package:image_picker/image_picker.dart';
 import '../menu_pages/show_my_points.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:membership_project/Pages/home/home.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -12,11 +17,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  @override
   final AuthService _auth = AuthService();
-  bool showPassword = false;
   PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
+  bool showPassword = false;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[400],
@@ -212,7 +216,7 @@ class _HomeState extends State<Home> {
               },
               child: Icon(
                 Icons.edit_outlined,
-                color: Colors.black,
+                color: Colors.blue,
                 size: 30,
               ),
             ),
@@ -221,6 +225,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
 
   Widget bottomSheet() {
     return Container(
