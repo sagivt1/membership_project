@@ -65,59 +65,6 @@ class _ProfilePage extends State<ProfilePage> {
               buildTextField('Full Name', 'Amit Bracha', false),
               buildTextField('Password', '******', true),
               buildTextField('Email', 'amit@gmail.com', false),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // ignore: deprecated_member_use
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      // ignore: deprecated_member_use
-                      child: OutlineButton(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Home()));
-                        },
-                        child: Text(
-                          'Cancel',
-                          style: TextStyle(
-                              fontSize: 15,
-                              letterSpacing: 2.5,
-                              color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    // ignore: deprecated_member_use
-                    Padding(
-                      padding: const EdgeInsets.only(right: 18),
-                      // ignore: deprecated_member_use
-                      child: RaisedButton(
-                        onPressed: () {},
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        elevation: 5,
-                        color: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                            fontSize: 15,
-                            letterSpacing: 2.5,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
@@ -166,26 +113,6 @@ class _ProfilePage extends State<ProfilePage> {
             ),
           ),
         ),
-        //Padding(
-        //  padding: const EdgeInsets.only(right: 10),
-        //  // ignore: deprecated_member_use
-        //  child: RaisedButton(
-        //    onPressed: () {},
-        //    padding: EdgeInsets.symmetric(horizontal: 25),
-        //    elevation: 5,
-        //    color: Colors.green,
-        //    shape:
-        //        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        //    child: Text(
-        //      'Update',
-        //      style: TextStyle(
-        //        fontSize: 15,
-        //        letterSpacing: 2.5,
-        //        color: Colors.black,
-        //      ),
-        //    ),
-        //  ),
-        //),
       ],
     );
   }
