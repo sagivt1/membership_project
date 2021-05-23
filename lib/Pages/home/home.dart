@@ -1,13 +1,15 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:membership_project/Pages/menu_pages/profile.dart';
 import 'package:membership_project/Services/auth.dart';
 import 'package:membership_project/Pages/menu_pages/edit_info.dart';
-import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import '../menu_pages/show_my_points.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:membership_project/Pages/home/home.dart';
-import 'package:image_picker/image_picker.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -16,25 +18,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
-  int _selectedIndex = 0;
-  void _onItemTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  List<Widget> _widgetOption = <Widget>[
-    //need to fix the Bottom Navigation Bar
-    Edit(),
-    Profile(),
-    EditProfilePage(),
-  ];
-
   PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
-
   bool showPassword = false;
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[400],
@@ -72,6 +58,18 @@ class _HomeState extends State<Home> {
                   fontSize: 24,
                 ),
               ),
+            ),
+            ListTile(
+              title: Text('Show My Points'),
+              leading: Icon(Icons.add_shopping_cart_outlined),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ShowPoints() //change to the page when we will create it
+                  ),
+                );
+              },
             ),
             ListTile(
               title: Text('Use My Points'),
@@ -164,16 +162,16 @@ class _HomeState extends State<Home> {
               decoration: InputDecoration(
                 suffixIcon: isPassword
                     ? IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showPassword = !showPassword;
-                          });
-                        },
-                        icon: Icon(
-                          Icons.remove_red_eye,
-                          color: Colors.green,
-                        ),
-                      )
+                  onPressed: () {
+                    setState(() {
+                      showPassword = !showPassword;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.remove_red_eye,
+                    color: Colors.black,
+                  ),
+                )
                     : null,
                 contentPadding: EdgeInsets.only(bottom: 5),
                 labelText: lText,
@@ -227,6 +225,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
 
   Widget bottomSheet() {
     return Container(

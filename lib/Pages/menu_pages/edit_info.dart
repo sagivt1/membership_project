@@ -25,6 +25,7 @@ class _EditProfilePage extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[400],
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
@@ -125,7 +126,7 @@ class _EditProfilePage extends State<EditProfilePage> {
         Padding(
           padding: const EdgeInsets.only(bottom: 35),
           child: SizedBox(
-            width: 270,
+            width: 340,
             child: TextField(
               obscureText: isPassword ? showPassword : false,
               decoration: InputDecoration(
@@ -155,26 +156,6 @@ class _EditProfilePage extends State<EditProfilePage> {
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          // ignore: deprecated_member_use
-          child: RaisedButton(
-            onPressed: () {},
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            elevation: 5,
-            color: Colors.green,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              'Update',
-              style: TextStyle(
-                fontSize: 15,
-                letterSpacing: 2.5,
-                color: Colors.black,
               ),
             ),
           ),
