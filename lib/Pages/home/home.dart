@@ -217,7 +217,7 @@ class _HomeState extends State<Home> {
               },
               child: Icon(
                 Icons.edit_outlined,
-                color: Colors.blue,
+                color: Colors.black,
                 size: 30,
               ),
             ),
