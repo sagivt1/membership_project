@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:membership_project/Pages/menu_pages/profile.dart';
 import 'package:membership_project/Services/auth.dart';
 import 'package:membership_project/Pages/menu_pages/edit_info.dart';
+import 'package:membership_project/Pages/menu_pages/add_points.dart';
 import 'package:image_picker/image_picker.dart';
-import '../menu_pages/show_my_points.dart';
+import 'package:membership_project/Pages/menu_pages/show_my_points.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -84,13 +85,13 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
-              title: Text('Profile'),
+              title: Text('Add Points'),
               leading: Icon(Icons.people),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Profile()),
+                  MaterialPageRoute(builder: (context) => AddPoints()),
                 );
               },
             ),
