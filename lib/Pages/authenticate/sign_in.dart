@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:membership_project/Services/auth.dart';
+import 'package:membership_project/Shred/lodaing.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -13,6 +14,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //Text Field data
   String email = '';
@@ -21,7 +23,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blue[400],
       appBar: AppBar(
@@ -86,10 +88,16 @@ class _SignInState extends State<SignIn> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
+                      setState(() {
+                        loading = true;
+                      });
                       dynamic result = await _auth.signInWithEmailAndPassword(
                           email, password);
                       if (result == null) {
-                        setState(() => error = 'Invalid data');
+                        setState(() {
+                          error = 'Invalid data';
+                          loading = false;
+                        });
                       }
                     }
                   },
