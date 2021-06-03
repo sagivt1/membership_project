@@ -17,6 +17,7 @@ class _AddPointsState extends State<AddPoints> {
     return Scaffold(
       backgroundColor: Colors.blue[400],
       appBar: AppBar(
+        title: Text('Membership club'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -30,7 +31,24 @@ class _AddPointsState extends State<AddPoints> {
           }, //go back to home page
         ),
       ),
-      body: Container(),
+      body: Container(
+        padding: EdgeInsets.only(left: 8, top: 8),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: ListView(
+            children: [
+              Text(
+                'Add Points',
+                style: TextStyle(fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -27,6 +27,7 @@ class _EditProfilePage extends State<EditProfilePage> {
     return Scaffold(
       backgroundColor: Colors.blue[400],
       appBar: AppBar(
+        title: Text('Membership club'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -50,7 +51,9 @@ class _EditProfilePage extends State<EditProfilePage> {
             children: [
               Text(
                 'Edit Profile',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               SizedBox(
                 height: 50,

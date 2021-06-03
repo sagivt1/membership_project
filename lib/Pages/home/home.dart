@@ -6,11 +6,12 @@ import 'package:membership_project/Pages/menu_pages/edit_info.dart';
 import 'package:membership_project/Pages/menu_pages/add_points.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:membership_project/Pages/menu_pages/show_my_points.dart';
+import 'package:membership_project/Pages/menu_pages/contact_us.dart';
+import 'package:membership_project/Pages/menu_pages/use_my_points.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:membership_project/Pages/home/home.dart';
-
 
 class Home extends StatefulWidget {
   @override
@@ -65,10 +66,7 @@ class _HomeState extends State<Home> {
               leading: Icon(Icons.add_shopping_cart_outlined),
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          ShowPoints() //change to the page when we will create it
-                  ),
+                  MaterialPageRoute(builder: (context) => ShowPoints()),
                 );
               },
             ),
@@ -77,10 +75,7 @@ class _HomeState extends State<Home> {
               leading: Icon(Icons.add_shopping_cart_outlined),
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          Edit() //change to the page when we will create it
-                      ),
+                  MaterialPageRoute(builder: (context) => UsePoints()),
                 );
               },
             ),
@@ -111,10 +106,7 @@ class _HomeState extends State<Home> {
               leading: Icon(Icons.email),
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          Edit() //change to the page when we will create it
-                      ),
+                  MaterialPageRoute(builder: (context) => Contact()),
                 );
               },
             ),
@@ -131,7 +123,10 @@ class _HomeState extends State<Home> {
             children: [
               Text(
                 'Profile',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               SizedBox(
                 height: 15,
@@ -163,16 +158,16 @@ class _HomeState extends State<Home> {
               decoration: InputDecoration(
                 suffixIcon: isPassword
                     ? IconButton(
-                  onPressed: () {
-                    setState(() {
-                      showPassword = !showPassword;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.remove_red_eye,
-                    color: Colors.black,
-                  ),
-                )
+                        onPressed: () {
+                          setState(() {
+                            showPassword = !showPassword;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.remove_red_eye,
+                          color: Colors.black,
+                        ),
+                      )
                     : null,
                 contentPadding: EdgeInsets.only(bottom: 5),
                 labelText: lText,
@@ -226,7 +221,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
 
   Widget bottomSheet() {
     return Container(
