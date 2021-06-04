@@ -42,7 +42,8 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      await DatabaseService(uid: user.uid).updateUserData('store1', 20);
+      await DatabaseService(uid: user.uid).updateUserInfoData('First Name' , 'Last Name');
+      await DatabaseService(uid: user.uid).updateUserData('storeA', 35);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -60,6 +61,10 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+
+  String getUsetId(){
+    return _auth.currentUser.uid;
   }
 
 }

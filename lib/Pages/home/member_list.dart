@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:membership_project/models/point.dart';
 import 'package:provider/provider.dart';
+import 'package:membership_project/Pages/home/point_tile.dart';
 
 
 
@@ -13,15 +14,22 @@ class _MemberListState extends State<MemberList> {
   @override
   Widget build(BuildContext context) {
 
-    final points = Provider.of<QuerySnapshot>(context);
-    //print(points.docs);
+    final points = Provider.of<List<Point>>(context);
+    //print(points);
 
-    for(var doc in points.docs){
-      print(doc.data());
-    }
 
-    return Container(
+    points.forEach((point) {
+      if(point != null) {
+        print(point.store);
+        print(point.point);
+      }
+    });
 
+    return ListView.builder(
+      itemCount: points.length,
+        itemBuilder: (context, index) {
+        return PointTile(point : points[index]);
+    },
     );
   }
 }

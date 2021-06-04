@@ -114,21 +114,4 @@ class _RegisterState extends State<Register> {
   }
 }
 
-/*
-Container(
-padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-child: ElevatedButton(
-child: Text('הירשם אנונימית'),
-onPressed: () async {
-dynamic result = _auth.registerAnon();
-if(result == null){
-print('שגיאה בהתחברות אנונימית');
-}else{
-print('הרשמה בוצעה בהצלחה');
-print(result.userId);
-}
-},
-),
-),
 
- */
