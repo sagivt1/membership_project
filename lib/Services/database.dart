@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:membership_project/models/point.dart';
-import 'package:membership_project/models/user_info.dart';
+import 'package:membership_project/models/MemberInfo.dart';
 
 class DatabaseService{
 
@@ -50,29 +50,25 @@ class DatabaseService{
         );
       }
     }).toList();
-
-
   }
 
-  UserInfo _userInfoFromDocument(QuerySnapshot snapshot) {
-    UserInfo userInfo;
-    snapshot.docs.map((doc) {
-      if(doc.id == uid){
-        userInfo = UserInfo(
-          firstName: doc.data()['first_name'],
-          lastName: doc.data()['last_name'],
-        );
-      }
-    });
+  Future<MemberInfo> userInfoFromDocument() async {
 
-    print(userInfo);
-    return userInfo;
+    var val = await infoCollection.doc(uid).get();
+    MemberInfo memberInfo = MemberInfo(firstName: val.data()['first_name'],lastName: val.data()['last_name']);
 
+    return memberInfo;
   }
 
-  Stream<UserInfo> get info {
-    return infoCollection.snapshots()
-        .map(_userInfoFromDocument);
+  Stream<MemberInfo> get userData{
+    return infoCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
+  }
+
+  MemberInfo _userDataFromSnapshot(DocumentSnapshot snapshot){
+    return MemberInfo(
+      firstName: snapshot.data()['first_name'],
+      lastName: snapshot.data()['last_name']
+    );
   }
 
 

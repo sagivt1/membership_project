@@ -14,18 +14,15 @@ class _MemberListState extends State<MemberList> {
   @override
   Widget build(BuildContext context) {
 
-    final points = Provider.of<List<Point>>(context);
-    print(points);
-    points.removeWhere((element) => element == null);
+    final points = Provider.of<List<Point>>(context) ?? [];
 
+    try {
+      points.removeWhere((element) => element == null);
+    }
+    catch(e){
 
-    // points.forEach((point) {
-    //   if(point != null) {
-    //     print(point.store);
-    //     print(point.point);
-    //     print(point.id);
-    //   }
-    // });
+    }
+
 
     return ListView.builder(
       itemCount: points.length,
