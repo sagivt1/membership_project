@@ -31,6 +31,7 @@ class DatabaseService{
 
     return snapshot.docs.map((doc){
       return Point(
+        id: doc.data()['id'] ?? '',
         store: doc.data()['store'] ?? '',
         point: doc.data()['points'] ?? 0
       );
@@ -41,9 +42,9 @@ class DatabaseService{
   List<Point> _pointListFromSnapshot2(QuerySnapshot snapshot){
 
     return snapshot.docs.map((doc){
-      print(doc.data());
-      if(doc.id == uid) {
+      if(doc.data()['id'] == uid) {
         return Point(
+            id: doc.data()['id'] ?? '',
             store: doc.data()['store'] ?? '',
             point: doc.data()['points'] ?? 0
         );

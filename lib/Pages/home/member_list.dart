@@ -15,15 +15,17 @@ class _MemberListState extends State<MemberList> {
   Widget build(BuildContext context) {
 
     final points = Provider.of<List<Point>>(context);
-    //print(points);
+    print(points);
+    points.removeWhere((element) => element == null);
 
 
-    points.forEach((point) {
-      if(point != null) {
-        print(point.store);
-        print(point.point);
-      }
-    });
+    // points.forEach((point) {
+    //   if(point != null) {
+    //     print(point.store);
+    //     print(point.point);
+    //     print(point.id);
+    //   }
+    // });
 
     return ListView.builder(
       itemCount: points.length,

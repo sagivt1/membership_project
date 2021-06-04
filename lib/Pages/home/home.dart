@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
     }
 
     return StreamProvider<List<Point>>.value(
-      value: DatabaseService(uid: _auth.getUsetId()).member,
+      value: DatabaseService(uid: _auth.getUsetId()).member2,
       initialData: null,
       child: Scaffold(
         backgroundColor: Colors.blue[400],
