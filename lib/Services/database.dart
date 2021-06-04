@@ -18,6 +18,7 @@ class DatabaseService{
   }
 
   Future updateUserData(String store, int points) async {
+    print('Hereeeeeeee');
      return await memberCollection.doc().set({
        'id':uid,
        'store':store,

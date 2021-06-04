@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:membership_project/Pages/home/barrcode.dart';
 import 'package:membership_project/Pages/home/settings_form.dart';
 import 'package:membership_project/Services/auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,12 +8,12 @@ import 'package:membership_project/Services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:membership_project/Pages/home/member_list.dart';
 import 'package:membership_project/models/point.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 
 class Home extends StatelessWidget {
 
   final AuthService _auth = AuthService();
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +23,28 @@ class Home extends StatelessWidget {
     void _showInfoPanel(){
       showModalBottomSheet(context: context, builder: (context){
         return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+          height: MediaQuery.of(context).size.height * 0.965,
+          padding: EdgeInsets.symmetric(vertical: 60.0, horizontal: 60.0),
           child: SettingForm(),
         );
-      });
+      },
+      isScrollControlled: true
+      );
     }
 
     return StreamProvider<List<Point>>.value(
       value: DatabaseService(uid: _auth.getUsetId()).member2,
       initialData: null,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => QrCode()),
+            );
+          },
         ),
         backgroundColor: Colors.blue[400],
         appBar: AppBar(
@@ -55,7 +66,9 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: MemberList(),
+        body: Container(
+            child: MemberList(),
+        ),
       ),
     );
   }
