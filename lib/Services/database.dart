@@ -17,8 +17,20 @@ class DatabaseService{
     });
   }
 
+  Future deleteUserDataById(String id) async {
+    return await memberCollection.doc(id).delete().then((value) => null);
+  }
+
+  Future updateUserDataById(String store, int points, String id , String userId) async {
+
+    return await memberCollection.doc(id).set({
+      'id':userId,
+      'store':store,
+      'points':points
+    });
+  }
+
   Future updateUserData(String store, int points) async {
-    print('Hereeeeeeee');
      return await memberCollection.doc().set({
        'id':uid,
        'store':store,
@@ -34,7 +46,8 @@ class DatabaseService{
       return Point(
         id: doc.data()['id'] ?? '',
         store: doc.data()['store'] ?? '',
-        point: doc.data()['points'] ?? 0
+        point: doc.data()['points'] ?? 0,
+        docId: doc.id ?? ""
       );
     }).toList();
 
@@ -47,7 +60,8 @@ class DatabaseService{
         return Point(
             id: doc.data()['id'] ?? '',
             store: doc.data()['store'] ?? '',
-            point: doc.data()['points'] ?? 0
+            point: doc.data()['points'] ?? 0,
+            docId: doc.id ?? ""
         );
       }
     }).toList();

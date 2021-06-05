@@ -13,8 +13,9 @@ class QrCodeRemove extends StatefulWidget {
   final String store;
   final int points;
   final String id;
+  final String userId;
 
-  const QrCodeRemove ({ Key key, this.store ,this.points , this.id}): super(key: key);
+  const QrCodeRemove ({ Key key, this.store ,this.points , this.id , this.userId}): super(key: key);
 
   @override
   _QrCodeRemoveState createState() => _QrCodeRemoveState();
@@ -48,7 +49,13 @@ class _QrCodeRemoveState extends State<QrCodeRemove> {
                   _scan();
                   _list = _data.split("-");
                   if(_list[0] == widget.store) {
-                    ans = "Yes";
+                    ans = 'yes';
+                    if(int.parse(_list[1]) < widget.points){
+                      DatabaseService().updateUserDataById(_list[0], widget.points - int.parse(_list[1]),widget.id, widget.userId);
+                    }
+                    else{
+                      DatabaseService().deleteUserDataById(widget.id);
+                    }
                   }
                   else{
                     ans = "No";

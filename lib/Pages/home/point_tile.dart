@@ -25,10 +25,11 @@ class PointTile extends StatelessWidget {
           title: Text(point.store),
           subtitle: Text(point.point.toString()),
           onTap: () {
+            print(point.docId);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => QrCodeRemove(store : point.store,
-                points: point.point,id: point.id,)),
+                points: point.point,id: point.docId,userId: point.id,)),
             );
           },
         ),
