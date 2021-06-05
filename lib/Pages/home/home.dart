@@ -40,10 +40,10 @@ class Home extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => QrCode()),
-            );
+              );
           },
         ),
         backgroundColor: Colors.blue[400],

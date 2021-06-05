@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:membership_project/Services/auth.dart';
@@ -23,16 +24,40 @@ class QrCodeRemove extends StatefulWidget {
 
 class _QrCodeRemoveState extends State<QrCodeRemove> {
 
-
   final AuthService _auth = AuthService();
 
-  String _data = "";
+  String _data = "",_temp;
   List<String> _list;
   String ans = "";
 
   _scan() async{
-    await FlutterBarcodeScanner.scanBarcode("#000000", "Cancel", false, ScanMode.QR)
-        .then((value) => setState(() => _data = value));
+    _temp = await FlutterBarcodeScanner.scanBarcode("#000000", "Cancel", false, ScanMode.QR);
+    _data = _temp;
+    await _handelData();
+  }
+
+  Future _handelData() async {
+    _list = _data.split("-");
+    print('\x1B[33m$_list\x1B[0m');
+    if(_list[0] == widget.store) {
+      if(int.parse(_list[1]) < widget.points){
+        ans = "yes";
+        DatabaseService().updateUserDataById(_list[0], widget.points - int.parse(_list[1]),widget.id, widget.userId);
+      }
+      else{
+        if(int.parse(_list[1]) == widget.points) {
+          ans = "yes";
+          DatabaseService().deleteUserDataById(widget.id);
+        }
+        else{
+          ans = "No1";
+        }
+      }
+    }
+    else{
+      ans = "No2";
+    }
+    print('\x1B[33m$ans\x1B[0m');
   }
 
   @override
@@ -47,20 +72,7 @@ class _QrCodeRemoveState extends State<QrCodeRemove> {
             TextButton(
                 onPressed: () {
                   _scan();
-                  _list = _data.split("-");
-                  if(_list[0] == widget.store) {
-                    ans = 'yes';
-                    if(int.parse(_list[1]) < widget.points){
-                      DatabaseService().updateUserDataById(_list[0], widget.points - int.parse(_list[1]),widget.id, widget.userId);
-                    }
-                    else{
-                      DatabaseService().deleteUserDataById(widget.id);
-                    }
-                  }
-                  else{
-                    ans = "No";
-                  }
-                  //Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'Scan',

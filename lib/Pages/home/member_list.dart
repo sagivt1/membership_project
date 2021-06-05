@@ -23,7 +23,6 @@ class _MemberListState extends State<MemberList> {
 
     }
 
-
     return ListView.builder(
       itemCount: points.length,
         itemBuilder: (context, index) {
