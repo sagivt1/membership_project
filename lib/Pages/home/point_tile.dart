@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:membership_project/Pages/home/barcode_remove.dart';
 import 'package:membership_project/models/point.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 
 class PointTile extends StatelessWidget {
+
 
   final Point point;
 
@@ -21,6 +24,13 @@ class PointTile extends StatelessWidget {
           ),
           title: Text(point.store),
           subtitle: Text(point.point.toString()),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => QrCodeRemove(store : point.store,
+                points: point.point,id: point.id,)),
+            );
+          },
         ),
       ),
     );
